@@ -12,8 +12,8 @@ module.exports = (pathname, pathDist = 'dist') => {
         const file = segs.pop()
         const dir = segs.length ? `${segs.join('/')}/` : ''
         return `/${dir}${
-            tool.filterTargetFile(
-                tool.readFilesInPath(`./${pathDist}/public/${dir}`),
+            require('./filterTargetFile')(
+                require('./readFilesInPath')(`./${pathDist}/public/${dir}`),
                 file
             )}`
     }

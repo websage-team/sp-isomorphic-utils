@@ -1,6 +1,6 @@
 {
   "name": "sp-isomorphic-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility functions for Super Project",
   "main": "index.js",
   "scripts": {
