@@ -1,0 +1,1 @@
+module.exports = (nextState, isAlwaysTrue) => (isAlwaysTrue || typeof location === 'undefined') ? true : (nextState.location.pathname === location.pathname)
