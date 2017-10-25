@@ -1,10 +1,6 @@
 const fs = require('fs-extra')
 const path = require('path')
-
-const getPublicPath = (appName, webpackDevServerPort = process.env.WEBPACK_DEV_SERVER_PORT || 3001) =>
-    __DEV__
-        ? `http://localhost:${webpackDevServerPort}/dist/`
-        : `/${appName ? `${appName}/` : ''}`
+const getPublicPath = require('../get-public-path')
 
 /**
  * 找到指定文件，返回路径
@@ -12,14 +8,15 @@ const getPublicPath = (appName, webpackDevServerPort = process.env.WEBPACK_DEV_S
  * @param {string} filename 要查找的文件的文件名
  * @param {string} [appName]
  * @param {string} [distPathname="dist"] 打包结果根目录
+ * @param {string|number} [webpackDevServerPort] Webpack Dev Server 端口
  * @memberof ReactIsomorphic
  */
-const getFile = (filename, appName, distPathname = 'dist') => {
+const getFile = (filename, appName, distPathname = 'dist', webpackDevServerPort) => {
     if (fs.existsSync(path.resolve(process.cwd(), appName, 'public')) || fs.existsSync(path.resolve(process.cwd(), appName, 'server')))
         return getFile(filename, '', appName)
 
     if (__DEV__)
-        return `${getPublicPath(appName)}${appName}.${filename}`
+        return `${getPublicPath(appName, webpackDevServerPort)}${appName}.${filename}`
 
     const pathChunckmap = path.resolve(process.cwd(), distPathname, 'public', appName, '.chunckmap.json')
 
