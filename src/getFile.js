@@ -11,7 +11,7 @@ const getPublicPath = require('../get-public-path')
  * @param {string|number} [webpackDevServerPort] Webpack Dev Server 端口
  * @memberof ReactIsomorphic
  */
-const getFile = (filename, appName, distPathname = 'dist', webpackDevServerPort) => {
+const getFile = (filename, appName = '', distPathname = 'dist', webpackDevServerPort) => {
     if (fs.existsSync(path.resolve(process.cwd(), appName, 'public')) || fs.existsSync(path.resolve(process.cwd(), appName, 'server')))
         return getFile(filename, '', appName)
 
