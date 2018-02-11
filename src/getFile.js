@@ -39,6 +39,15 @@ const getFile = (filename, appName = '', distPathname = 'dist', webpackDevServer
 
     // 如果没有找到chunckmap或是chunckmap中未找到目标项目，转为过滤文件形式
     const pathname = `${appName ? `${appName}/` : ''}${filename}`
+
+    if (fs.existsSync(path.resolve(
+        process.cwd(),
+        `./${distPathname}/public`,
+        pathname
+    ))) {
+        return pathname
+    }
+
     const segs = pathname.split('/').filter(seg => seg !== '/')
     const file = segs.pop()
     const dir = segs.length ? `${segs.join('/')}/` : ''
