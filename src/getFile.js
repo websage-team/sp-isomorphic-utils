@@ -45,7 +45,7 @@ const getFile = (filename, appName = '', distPathname = 'dist', webpackDevServer
         `./${distPathname}/public`,
         pathname
     ))) {
-        return pathname
+        return '/' + pathname
     }
 
     const segs = pathname.split('/').filter(seg => seg !== '/')
